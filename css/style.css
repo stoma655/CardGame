@@ -1,0 +1,9 @@
+.buttons {
+	position: absolute;
+	top: 400px;
+}
+
+button {
+	padding: 20px 10px;
+	margin-left: 100px;
+}
