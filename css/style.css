@@ -7,3 +7,43 @@ button {
 	padding: 20px 10px;
 	margin-left: 100px;
 }
+
+h1 {
+	position: absolute;
+	color: black;
+	margin-top: 500px;
+}
+
+.one {
+	display: none;
+	position: absolute;
+	background-color: rgba(0, 0, 0, .8);
+	width: 600px;
+	height: 500px;
+	left: 50%;
+	margin-left: -300px;
+	z-index: 5;
+	top: 50%;
+	margin-top: -250px;
+}
+
+.one h2 {
+	margin-top: 70px;
+	font-size: 32px;
+	font-weight: 100;
+	color: white;
+	text-align: center;
+}
+
+.tuz {
+	cursor: pointer;
+	margin-top: 100px;
+	margin-left: 100px;
+	display: inline-block;
+	height: 90px;
+	width: 150px;
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 60px;
+}

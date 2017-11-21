@@ -41,17 +41,18 @@ for (var j = 0; j < 4; j++) {
 var items = document.querySelectorAll('.item h5');
 for (var i = 0; i < items.length; i++) {
 	switch(true) {
-		case items[i].innerHTML.indexOf(11) !== -1: items[i].innerHTML += '<br> валет';
+		case items[i].innerHTML.indexOf(11) !== -1: items[i].innerHTML += '<br> валет <br> <h3>2</h3>';
 		break;
-		case items[i].innerHTML.indexOf(12) !== -1: items[i].innerHTML += '<br> дама';
+		case items[i].innerHTML.indexOf(12) !== -1: items[i].innerHTML += '<br> дама <br> <h3>3</h3>';
 		break;
-		case items[i].innerHTML.indexOf(13) !== -1: items[i].innerHTML += '<br> король';
+		case items[i].innerHTML.indexOf(13) !== -1: items[i].innerHTML += '<br> король <br> <h3>4</h3>';
 		break;
-		case items[i].innerHTML.indexOf(14) !== -1: items[i].innerHTML += '<br> туз';
+		case items[i].innerHTML.indexOf(14) !== -1: items[i].innerHTML += '<br> туз <br> <h3>11</h3>';
 		break;
 	}
 }
 
+var overlay = document.querySelector('.one');
 
 var downcard1 = document.querySelector('.downcard');
 downcard1.addEventListener('click', Func);
@@ -65,6 +66,13 @@ function Func() {
 	return Math.floor(Math.random() * (max - min)) + min;
 	}
 	var number = getRandomInt(0,36);
+	if (arr[number].innerHTML.indexOf(14) !== -1) {
+		var onetus = document.querySelector('.onetus');
+		var twotus = document.querySelector('.twotus');
+		overlay.style.display = 'block';
+		onetus.addEventListener('click', funcOne);
+		twotus.addEventListener('click', funcTwo);
+	}
 	arr[number].style.top = '100px';
 	arr[number].style.color = 'black';
 }
@@ -74,11 +82,25 @@ function Func2() {
 	for (var i = 0; i < arr.length; i++) {
 		arr[i].style.color = 'transparent';
 		arr[i].style.top = '8px';
-	}
-	
-
-	
+	}	
 }
 
 
+var result = 0;
+
+function funcOne() {
+	overlay.style.display = 'none';
+	result += 1;
+	return result;
+}
+
+
+
+function funcTwo() {
+	overlay.style.display = 'none';
+	result += 11;
+}
+
+var res = document.querySelector('h1');
+	res.innerHTML = 'ОЧКИ:'+ result +'';
 
