@@ -1,8 +1,8 @@
 // control
 var card = {
 	width: '170px',
-	height: '250px',
-	background: '#888'
+	height: '265px',
+	background: '#f2f2f2'
 };
 
 var vid = function(name, color) {
@@ -10,6 +10,8 @@ var vid = function(name, color) {
 	this.__proto__ = card;
 	this.color = color;
 }
+
+
 
 var bubn = new vid('bubn', 'red');
 var cherv = new vid('cherv', 'red');
@@ -27,6 +29,7 @@ for (var j = 0; j < 4; j++) {
 		elem.style.width = ''+ card.width +'';
 		elem.style.height = ''+ card.height +'';
 		elem.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+		
 		elem.style.position = 'absolute';
 		elem.style.left = ''+ cardleft +'px';
 		elem.innerHTML = ''+ arr1[0].name +'<br> <h5>'+ count1 +'</h5>';
@@ -38,16 +41,18 @@ for (var j = 0; j < 4; j++) {
 	count1 = 6;
 }
 
+Func2();
+
 var items = document.querySelectorAll('.item h5');
 for (var i = 0; i < items.length; i++) {
 	switch(true) {
-		case items[i].innerHTML.indexOf(11) !== -1: items[i].innerHTML += '<br> валет <br> <h3>2</h3>';
+		case items[i].innerHTML.indexOf(11) !== -1: items[i].innerHTML += '<br> валет <br> ';
 		break;
-		case items[i].innerHTML.indexOf(12) !== -1: items[i].innerHTML += '<br> дама <br> <h3>3</h3>';
+		case items[i].innerHTML.indexOf(12) !== -1: items[i].innerHTML += '<br> дама <br> ';
 		break;
-		case items[i].innerHTML.indexOf(13) !== -1: items[i].innerHTML += '<br> король <br> <h3>4</h3>';
+		case items[i].innerHTML.indexOf(13) !== -1: items[i].innerHTML += '<br> король <br> ';
 		break;
-		case items[i].innerHTML.indexOf(14) !== -1: items[i].innerHTML += '<br> туз <br> <h3>11</h3>';
+		case items[i].innerHTML.indexOf(14) !== -1: items[i].innerHTML += '<br> туз <br> ';
 		break;
 	}
 }
@@ -59,6 +64,12 @@ downcard1.addEventListener('click', Func);
 
 var perm = document.querySelector('.perm');
 perm.addEventListener('click', Func2);
+
+var stop = document.querySelector('.stop');
+stop.addEventListener('click', stopFunc);
+
+var result = 0;
+var stoped = 0;
 
 function Func() {
 	var arr = document.querySelectorAll('.item');
@@ -73,8 +84,19 @@ function Func() {
 		onetus.addEventListener('click', funcOne);
 		twotus.addEventListener('click', funcTwo);
 	}
+	switch(true) {
+		case arr[number].innerHTML.indexOf(6) !== -1: result += 6; perepis();break;
+		case arr[number].innerHTML.indexOf(7) !== -1: result += 7; perepis();break;
+		case arr[number].innerHTML.indexOf(8) !== -1: result += 8; perepis();break;
+		case arr[number].innerHTML.indexOf(9) !== -1: result += 9; perepis();break;
+		case arr[number].innerHTML.indexOf(10) !== -1: result += 10; perepis();break;
+		case arr[number].innerHTML.indexOf(11) !== -1: result += 2; perepis();break;
+		case arr[number].innerHTML.indexOf(12) !== -1: result += 3; perepis();break;
+		case arr[number].innerHTML.indexOf(13) !== -1: result += 4; perepis();break;
+	}
 	arr[number].style.top = '100px';
 	arr[number].style.color = 'black';
+	arr[number].style.backgroundImage = 'url(img/two.jpg)';
 }
 
 function Func2() {
@@ -82,25 +104,65 @@ function Func2() {
 	for (var i = 0; i < arr.length; i++) {
 		arr[i].style.color = 'transparent';
 		arr[i].style.top = '8px';
+		arr[i].style.backgroundImage = 'url(img/one.jpg)';
+		arr[i].style.backgroundSize = 'cover';
 	}	
+	result = 0;
+	perepis();
 }
 
 
-var result = 0;
+function stopFunc() {
+	stoped = result;
+	switch(true) {
+		case stoped < 21: alert('ты набрал '+ stoped +' недобор');break;
+		case stoped === 21: alert('ты набрал '+ stoped +' ПОЗДРАВЛЯЮ!');break;
+		case stoped > 21: alert('ты набрал '+ stoped +' перебор');break;
+	}
+	Func2();
+	var table1 = document.querySelectorAll('.table h3');
+	var tablelen = table1.length;
+	if ( tablelen & 1 ) {
+		alert( "нечетно" );
+		var player2 = document.querySelector('.col-two');
+		var elemscore = document.createElement('h3');
+		elemscore.classList.add('item-score');
+		elemscore.innerHTML = ''+ stoped +'';
+		player2.appendChild(elemscore);
+	} else {
+		alert( "четно" );
+		var player1 = document.querySelector('.col-one');
+		var elemscore2 = document.createElement('h3');
+		elemscore2.classList.add('item-score');
+		elemscore2.innerHTML = ''+ stoped +'';
+		player1.appendChild(elemscore2);
+	}
+}
+
+function perepis() {
+		var res = document.querySelector('h1');
+		res.innerHTML = 'СЧЕТ:'+ result +'';
+	}
+
 
 function funcOne() {
 	overlay.style.display = 'none';
 	result += 1;
-	return result;
+	perepis();
 }
-
 
 
 function funcTwo() {
 	overlay.style.display = 'none';
 	result += 11;
+	perepis();
 }
 
+
+
+
+console.log(result);
+
 var res = document.querySelector('h1');
-	res.innerHTML = 'ОЧКИ:'+ result +'';
+	res.innerHTML = 'СЧЕТ:'+ result +'';
 

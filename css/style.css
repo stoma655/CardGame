@@ -1,6 +1,42 @@
+body {
+	background: linear-gradient(135deg, #0c6b0d 0%, #00A32B 100%);
+}
+
 .buttons {
 	position: absolute;
 	top: 400px;
+}
+
+.table h2 {
+	color: white;
+	position: absolute;
+	top: -60px;
+	left: 50%;
+	margin-left: -40px;
+}
+
+.tab {
+	width: 175px;
+	position: absolute;
+}
+
+.col-two {
+	right: 0;
+}
+
+.table h3 {
+	text-align: center;
+	color: white;
+}
+
+.table {
+	border-radius: 15px;
+	position: absolute;
+	right: 5%;
+	top: 40%;
+	width: 350px;
+	height: 450px;
+	background-color: rgba(0, 0, 0, .6);
 }
 
 button {
@@ -10,7 +46,7 @@ button {
 
 h1 {
 	position: absolute;
-	color: black;
+	color: white;
 	margin-top: 500px;
 }
 
