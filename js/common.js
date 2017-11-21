@@ -11,8 +11,6 @@ var vid = function(name, color) {
 	this.color = color;
 }
 
-
-
 var bubn = new vid('bubn', 'red');
 var cherv = new vid('cherv', 'red');
 var crest = new vid('crest', 'black');
@@ -40,7 +38,6 @@ for (var j = 0; j < 4; j++) {
 	arr1.shift();
 	count1 = 6;
 }
-
 Func2();
 
 var items = document.querySelectorAll('.item h5');
@@ -56,7 +53,6 @@ for (var i = 0; i < items.length; i++) {
 		break;
 	}
 }
-
 var overlay = document.querySelector('.one');
 
 var downcard1 = document.querySelector('.downcard');
@@ -94,12 +90,19 @@ function Func() {
 		case arr[number].innerHTML.indexOf(12) !== -1: result += 3; perepis();break;
 		case arr[number].innerHTML.indexOf(13) !== -1: result += 4; perepis();break;
 	}
+	arr[number].classList.remove('item');
+	arr[number].classList.add('item-grab');
 	arr[number].style.top = '100px';
 	arr[number].style.color = 'black';
 	arr[number].style.backgroundImage = 'url(img/two.jpg)';
 }
 
 function Func2() {
+	var arrgrab = document.querySelectorAll('.item-grab');
+	for (var i = 0; i < arrgrab.length; i++) {
+		arrgrab[i].classList.remove('item-grab');
+		arrgrab[i].classList.add('item');
+	}
 	var arr = document.querySelectorAll('.item');
 	for (var i = 0; i < arr.length; i++) {
 		arr[i].style.color = 'transparent';
@@ -110,7 +113,6 @@ function Func2() {
 	result = 0;
 	perepis();
 }
-
 
 function stopFunc() {
 	stoped = result;
@@ -123,14 +125,12 @@ function stopFunc() {
 	var table1 = document.querySelectorAll('.table h3');
 	var tablelen = table1.length;
 	if ( tablelen & 1 ) {
-		alert( "нечетно" );
 		var player2 = document.querySelector('.col-two');
 		var elemscore = document.createElement('h3');
 		elemscore.classList.add('item-score');
 		elemscore.innerHTML = ''+ stoped +'';
 		player2.appendChild(elemscore);
 	} else {
-		alert( "четно" );
 		var player1 = document.querySelector('.col-one');
 		var elemscore2 = document.createElement('h3');
 		elemscore2.classList.add('item-score');
@@ -138,12 +138,10 @@ function stopFunc() {
 		player1.appendChild(elemscore2);
 	}
 }
-
 function perepis() {
 		var res = document.querySelector('h1');
-		res.innerHTML = 'СЧЕТ:'+ result +'';
+		res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ result +'';
 	}
-
 
 function funcOne() {
 	overlay.style.display = 'none';
@@ -151,18 +149,12 @@ function funcOne() {
 	perepis();
 }
 
-
 function funcTwo() {
 	overlay.style.display = 'none';
 	result += 11;
 	perepis();
 }
 
-
-
-
-console.log(result);
-
 var res = document.querySelector('h1');
-	res.innerHTML = 'СЧЕТ:'+ result +'';
+	res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ result +'';
 

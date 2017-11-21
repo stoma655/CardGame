@@ -24,6 +24,11 @@ body {
 	right: 0;
 }
 
+.table h4 {
+	text-align: center;
+	color: white;
+}
+
 .table h3 {
 	text-align: center;
 	color: white;
@@ -40,14 +45,32 @@ body {
 }
 
 button {
+	border-radius: 10px;
+	cursor: pointer;
 	padding: 20px 10px;
 	margin-left: 100px;
+	width: 250px;
+	border: 3px solid white;
+	background-color: transparent;
+	font-weight: 600;
+	font-size: 16px;
+	color: white;
+	transition: .1s;
+}
+
+button:hover {
+	color: red;
+	background-color: white;
+	border-color: red;
 }
 
 h1 {
 	position: absolute;
 	color: white;
-	margin-top: 500px;
+	margin-top: 550px;
+	left: 50%;
+	margin-left: -390px;
+
 }
 
 .one {
