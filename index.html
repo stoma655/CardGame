@@ -7,6 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="css/media.css">
 </head>
 <body>
+	<div class="enter-name">
+		<h2>Карточная игра <span>21</span></h2>
+		<input id="name" type="text" placeholder="Введите ваше имя и нажмите Enter">
+	</div>
+	<div class="botstep">
+		<h2>Ход Бота</h2>
+	</div>
 	<div class="buttons">
 		<button class="perm">СБРОС ТЕКУЩЕЙ ИГРЫ</button>
 		<button class="downcard">ВЫТЯНУТЬ КАРТУ</button>
@@ -22,11 +29,11 @@
 	<div class="table">
 		<h2>ДОСКА</h2>
 			<div class="col-one tab">
-				<h3>ИГРОК 1</h3>
+				<h3 id="scoreName">Player</h3>
 
 			</div>
 			<div class="col-two tab">
-				<h3>ИГРОК 2</h3>
+				<h3>Bot</h3>
 			</div>
 	</div>
 

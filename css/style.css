@@ -1,5 +1,77 @@
 body {
-	background: linear-gradient(135deg, #0c6b0d 0%, #00A32B 100%);
+	background-image: url(https://st3.depositphotos.com/4072575/15577/i/110/depositphotos_155774886-stock-photo-poker-table-felt-background-seamless.jpg);
+	/*background: #0c6b0d;*/
+	margin: 0;
+}
+
+.enter-name {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .6);
+	z-index: 30;
+}
+
+::-webkit-input-placeholder {color:#fff;}
+::-moz-placeholder          {color:#fff;}/* Firefox 19+ */
+:-moz-placeholder           {color:#fff;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#fff;}
+
+.enter-name input[type=text] {
+	color: white;
+	position: absolute;
+	top: 35%; 
+	left: 50%;
+	margin-left: -140px;
+	width: 250px;
+	padding: 10px 20px;
+	font-size: 14px;
+	border: none;
+	background-color: transparent;
+	border-bottom: 2px solid #fff;
+	outline: none;
+}
+
+.enter-name h2 {
+	position: absolute;  
+	color: white;
+	font-size: 44px;             
+	top: 30%; 
+	left: 50%;
+	margin-left: -192px;   
+	margin-top: -30px;
+	letter-spacing: 1px;
+}
+
+.enter-name span {
+	color: #f6d600;
+}
+
+.botstep {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .4);
+	z-index: 30;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: white;
+	font-size: 24px;
+	display: none;
+}
+
+.botstep h2 {
+	position: absolute;               
+	top: 50%; 
+	left: 50%;
+	margin-left: -125px;   
+	margin-top: -30px;                     
+}
+
+.item {
+	transition: .2s;
+	border-radius: 5px;
 }
 
 .buttons {
@@ -43,25 +115,44 @@ body {
 	height: 450px;
 	background-color: rgba(0, 0, 0, .6);
 }
+h5 {
+	opacity: 0;
+}
+none {
+	opacity: 0;
+}
+
+he {
+	font-size: 36px;
+	position: absolute;
+	top: 0;
+	left: 5px;
+}
+
+mast {
+	display: block;
+	margin-top: 30px;
+	font-size: 42px;
+	margin-left: 5px;
+}
 
 button {
 	border-radius: 10px;
 	cursor: pointer;
-	padding: 20px 10px;
+	padding: 18px 10px;
 	margin-left: 100px;
 	width: 250px;
-	border: 3px solid white;
+	border: 2px solid white;
 	background-color: transparent;
 	font-weight: 600;
 	font-size: 16px;
 	color: white;
 	transition: .1s;
+	outline: none;
 }
 
 button:hover {
-	color: red;
-	background-color: white;
-	border-color: red;
+	background-color: rgba(255, 255, 255, .1);
 }
 
 h1 {
