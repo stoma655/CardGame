@@ -212,7 +212,7 @@ var  massiveScore = [];
 setInterval(function() {
 	massiveScore = document.querySelectorAll('.table h3');
 if (massiveScore.length > 19){
-		alert('партеечка закончена');
+		alert('партия окончена');
 		location.reload(true)
 	}
 }, 500);
