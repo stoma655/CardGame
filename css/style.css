@@ -2,6 +2,7 @@ body {
 	background-image: url(https://st3.depositphotos.com/4072575/15577/i/110/depositphotos_155774886-stock-photo-poker-table-felt-background-seamless.jpg);
 	/*background: #0c6b0d;*/
 	margin: 0;
+	font-family: arial;
 }
 
 .enter-name {
@@ -112,7 +113,7 @@ body {
 	right: 5%;
 	top: 40%;
 	width: 350px;
-	height: 450px;
+	height: 445px;
 	background-color: rgba(0, 0, 0, .6);
 }
 h5 {
@@ -136,8 +137,136 @@ mast {
 	margin-left: 5px;
 }
 
-button {
+.rait {
+	position: absolute;
+	bottom: 2%;
+	width: 350px;
+	height: 70px;
+	background-color: rgba(0, 0, 0, .4);
 	border-radius: 10px;
+	right: 5%;
+}
+
+.rait h3 {
+	text-transform: uppercase;
+	color: white;
+	left: 50%;
+	margin-left: -70px;
+	top: -65%;
+	position: absolute;
+}
+
+@keyframes winstar {
+
+  0% {
+    color: yellow;
+    
+  }
+  25% {
+  	color: yellow;
+	
+  }
+  30% {
+  	color: yellow;
+	
+  }
+  50% {
+    color: rgba(255, 255, 255, .6);
+    
+  }
+  75% {
+  	color: yellow;
+	
+  }
+  100% {
+  	color: yellow;
+  	
+  }
+}
+
+.winstar {
+	animation-name: winstar;
+	transform-origin: center bottom;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+}
+
+.star {
+	display: inline;
+	font-size: 36px;
+	margin-left: 14px;
+}
+
+
+.fa-star-o {
+	color: white;
+	opacity: .2;
+}
+
+@keyframes item-score {
+  from, { 
+    background-color: rgba(255, 255, 255, .3);
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    line-height: 2.2;
+    border-radius: 50%;
+  }
+  0% {
+    background-color: rgba(255, 255, 255, .3);
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    line-height: 2.2;
+    border-radius: 50%;
+  }
+
+  50% {
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    line-height: 2.2;
+    border-radius: 50%;
+  }
+
+  to { 
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    line-height: 2.2;
+    border-radius: 50%;
+
+  }
+}
+
+.item-score {
+	animation-name: item-score;
+	transform-origin: center bottom;
+	animation-duration: 3s;
+}
+
+.change_name {
+	position: absolute;
+	right: 1%;
+	top: 1%;
+	font-weight: 600;
+	color: white;
+	padding: 5px 5px;
+	border-radius: 3px;
+	background-color: transparent;
+	border: 1px solid white;
+	outline: none;
+	cursor: pointer;
+}
+
+.change_name:hover {
+	background-color: rgba(255, 255, 255, .2);
+}
+
+button.game {
+	border-radius: 5px;
 	cursor: pointer;
 	padding: 18px 10px;
 	margin-left: 100px;
@@ -151,7 +280,7 @@ button {
 	outline: none;
 }
 
-button:hover {
+button.game:hover {
 	background-color: rgba(255, 255, 255, .1);
 }
 
@@ -168,6 +297,7 @@ h1 {
 	display: none;
 	position: absolute;
 	background-color: rgba(0, 0, 0, .8);
+	border-radius: 10px;
 	width: 600px;
 	height: 500px;
 	left: 50%;

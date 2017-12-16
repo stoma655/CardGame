@@ -3,10 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Prototype</title>
+	<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/media.css">
 </head>
 <body>
+	<div class="rait">
+		<h3>твой рейтинг</h3>
+		<ul class="ulstar">
+			<li class="star"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+			<li class="star"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+			<li class="star"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+			<li class="star"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+			<li class="star"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+		</ul>
+	</div>
+	<button class="change_name">Изменить имя</button>
 	<div class="enter-name">
 		<h2>Карточная игра <span>21</span></h2>
 		<input id="name" type="text" placeholder="Введите ваше имя и нажмите Enter">
@@ -15,9 +27,9 @@
 		<h2>Ход Бота</h2>
 	</div>
 	<div class="buttons">
-		<button class="perm">СБРОС ТЕКУЩЕЙ ИГРЫ</button>
-		<button class="downcard">ВЫТЯНУТЬ КАРТУ</button>
-		<button class="stop">ХВАТИТ</button>
+		<button class="game perm">СБРОС ТЕКУЩЕЙ ИГРЫ</button>
+		<button class="game downcard">ВЫТЯНУТЬ КАРТУ</button>
+		<button class="game stop">ХВАТИТ</button>
 	</div>
 	<div class="one">
 		<h2>Выпал туз! Выбери как засчитать!</h2>
