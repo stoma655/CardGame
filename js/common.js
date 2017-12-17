@@ -263,7 +263,7 @@ switch(true) {
 let  massiveScore = [];
 setInterval(() => {
 	massiveScore = document.querySelectorAll('.table h3');
-if (massiveScore.length > 19){
+if (massiveScore.length > 3){
 	switch(true) {
 		case globalVin1 > globalVin2: alert('в итоге ты выйграл! +1 к рейтингу '+ globalVin1 +' vs '+ globalVin2 +'');
 		if (reitArr.length < 5) {
@@ -276,8 +276,8 @@ if (massiveScore.length > 19){
 	};
 	numberReiting = reitArr.length;
 	localStorage.setItem('raiting', numberReiting);
-	const finish = localStorage.getItem('raiting');
-	const reit = document.querySelectorAll('.star');
+	let finish = localStorage.getItem('raiting');
+	let reit = document.querySelectorAll('.star');
 		for (var i = 0; i < 5; i++) {
 		reit[i].innerHTML = '<i class="fa fa-star-o" aria-hidden="true"></i>';
 	}
@@ -286,7 +286,7 @@ if (massiveScore.length > 19){
 	}
 }, 500);
 setTimeout(() => {
-	const reit = document.querySelectorAll('.star');
+	let reit = document.querySelectorAll('.star');
 	finish = localStorage.getItem('raiting');
 	console.log(finish);
 	switch(true) {
