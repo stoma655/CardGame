@@ -263,7 +263,7 @@ switch(true) {
 let  massiveScore = [];
 setInterval(() => {
 	massiveScore = document.querySelectorAll('.table h3');
-if (massiveScore.length > 3){
+if (massiveScore.length > 19){
 	switch(true) {
 		case globalVin1 > globalVin2: alert('в итоге ты выйграл! +1 к рейтингу '+ globalVin1 +' vs '+ globalVin2 +'');
 		if (reitArr.length < 5) {
