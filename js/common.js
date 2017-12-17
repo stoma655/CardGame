@@ -135,6 +135,7 @@ function Func() {
 	}
 	var number = getRandomInt(0,36);
 	if (arr[number].innerHTML.indexOf(14) !== -1) {
+		stop.style.display = 'none';
 		var onetus = document.querySelector('.onetus');
 		var twotus = document.querySelector('.twotus');
 		overlay.style.display = 'block';
@@ -232,17 +233,17 @@ function gameOver() {
 	if (sravnenie1 <= 21 && sravnenie2 <= 21) {
 		switch (true) {
             case sravnenie1 > sravnenie2: 
-                alert('Вы выйграли');globalVin1 += 1;break;
+                alert('Ты выйграл!');globalVin1 += 1;break;
             case sravnenie2 > sravnenie1: 
-				alert('Вы проиграли :(');globalVin2 += 1;break;
+				alert('Ты проиграл :(');globalVin2 += 1;break;
             case sravnenie2 === sravnenie1: alert('ничья');break;
 		}
 	} else {
 		switch (true) {
         	case sravnenie1 < sravnenie2: 
-                alert('вы выйграли');globalVin1 += 1;break;
+                alert('Ты выйграл!');globalVin1 += 1;break;
         	case sravnenie2 < sravnenie1: 
-                alert('вы проиграли :(');globalVin2 += 1;break;
+                alert('Ты проиграл :(');globalVin2 += 1;break;
         	case sravnenie2 === sravnenie1: alert('ничья'); break;
 		}
 	}
@@ -278,7 +279,7 @@ if (massiveScore.length > 19){
 		if (reitArr.length < 5) {
 			reitArr.push('one');
 		};break;
-		case globalVin1 < globalVin2: alert('в итоге ты проиграл :( -1 от рейтингу'+ globalVin1 +' vs '+ globalVin2 +'');
+		case globalVin1 < globalVin2: alert('в итоге ты проиграл :( -1 от рейтинга '+ globalVin1 +' vs '+ globalVin2 +'');
 		if (reitArr.length > 0) {
 			reitArr.shift();
 		};break;
@@ -385,12 +386,14 @@ function funcOne() {
 	overlay.style.display = 'none';
 	result += 1;
 	perepis();
+	stop.style.display = 'inline-block';
 }
 
 function funcTwo() {
 	overlay.style.display = 'none';
 	result += 11;
 	perepis();
+	stop.style.display = 'inline-block';
 }
 
 }

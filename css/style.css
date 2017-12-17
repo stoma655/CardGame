@@ -267,9 +267,10 @@ mast {
 
 button.game {
 	border-radius: 5px;
+	display: inline-block;
 	cursor: pointer;
 	padding: 18px 10px;
-	margin-left: 100px;
+	margin-left: 310px;
 	width: 250px;
 	border: 2px solid white;
 	background-color: transparent;
@@ -288,22 +289,21 @@ h1 {
 	position: absolute;
 	color: white;
 	margin-top: 550px;
-	left: 50%;
-	margin-left: -390px;
+	margin-left: 570px;
 
 }
 
 .one {
 	display: none;
 	position: absolute;
-	background-color: rgba(0, 0, 0, .8);
+	background-color: rgba(0, 0, 0, .6);
 	border-radius: 10px;
 	width: 600px;
-	height: 500px;
-	left: 50%;
+	height: 300px;
+	left: 37%;
 	margin-left: -300px;
 	z-index: 5;
-	top: 50%;
+	bottom: 5%;
 	margin-top: -250px;
 }
 
@@ -317,13 +317,17 @@ h1 {
 
 .tuz {
 	cursor: pointer;
-	margin-top: 100px;
+	margin-top: 30px;
 	margin-left: 100px;
 	display: inline-block;
-	height: 90px;
+	height: 70px;
 	width: 150px;
-	background-color: black;
+	background-color: rgba(255, 255, 255, .1);
 	color: white;
 	text-align: center;
 	font-size: 60px;
+}
+
+.perm {
+	display: none!important;
 }
