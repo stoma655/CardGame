@@ -1,12 +1,13 @@
-let nameBar = document.querySelector('#name');
-let overlayName = document.querySelector('.enter-name');
+// инициализация игры 
+const nameBar = document.querySelector('#name');
+const overlayName = document.querySelector('.enter-name');
 if (localStorage.getItem('name')) {
 	overlayName.style.display = "none";
 	start();
 } else {	
-	nameBar.addEventListener('keyup', function() {
+	nameBar.addEventListener('keyup', () => {
 	if (event.keyCode === 13) {
-        let localName = nameBar.value;
+        const localName = nameBar.value;
         overlayName.style.display = "none";
         localStorage.setItem('name', localName);
         playerName = localStorage.getItem('name');
@@ -16,11 +17,11 @@ if (localStorage.getItem('name')) {
 }
 
 // функция изменения имени
-document.querySelector('.change_name').addEventListener('click', function(){
+document.querySelector('.change_name').addEventListener('click', () => {
 	overlayName.style.display = "block";
-	nameBar.addEventListener('keyup', function(){
+	nameBar.addEventListener('keyup', () => {
 		if (event.keyCode === 13) {
-			let changeName = nameBar.value;
+			const changeName = nameBar.value;
 			localStorage.setItem('name', changeName);
 			playerName = localStorage.getItem('name');
 			overlayName.style.display = "none";
@@ -29,39 +30,37 @@ document.querySelector('.change_name').addEventListener('click', function(){
 })
 
 
-
 function start() {
 	playerName = localStorage.getItem('name');
-	// объекты мастей и наследование от объекта карта основн параметров
+	
 	scoreName = document.querySelector('#scoreName');
 	scoreName.innerHTML = ''+ playerName +'';
 
-
-	var card = {
+// объекты мастей и наследование от объекта карта основн параметров
+	const card = {
 		width: '170px',
 		height: '265px',
 		background: '#f2f2f2'
 	};
 
-	var vid = function(name, color) {
+	const vid = function(name, color) {
 		this.name = name;
 		this.__proto__ = card;
 		this.color = color;
 	}
 
-	var bubn = new vid('♦', 'red');
-	var cherv = new vid('♥', 'red');
-	var crest = new vid('♣', 'black');
-	var pick = new vid('♠', 'black');
+	const bubn = new vid('♦', 'red');
+	const cherv = new vid('♥', 'red');
+	const crest = new vid('♣', 'black');
+	const pick = new vid('♠', 'black');
 	 
-	// построение айтемов (карт) на стол
-
-	var arr1 = [bubn, cherv, crest, pick];
-	var count1 = 6;
-	var cardleft = 30;
+// построение айтемов (карт) на стол
+	const arr1 = [bubn, cherv, crest, pick];
+	let count1 = 6;
+	let cardleft = 30;
 	for (var j = 0; j < 4; j++) {
 		for (var i = 0; i < 9; i++) {
-			var elem = document.createElement('div');
+			const elem = document.createElement('div');
 			elem.classList.add('item');
 			elem.style.backgroundColor = ''+ card.background +'';
 			elem.style.width = ''+ card.width +'';
@@ -80,16 +79,15 @@ function start() {
 		count1 = 6;
 	}
 
-
-		var arr = document.querySelectorAll('.item');
+// раздача стилей перевернутым картам
+		const arr = document.querySelectorAll('.item');
 		for (var i = 0; i < arr.length; i++) {
 			arr[i].style.color = 'transparent';
 			arr[i].style.top = '8px';
 			arr[i].style.backgroundImage = 'url(img/one.jpg)';
 			arr[i].style.backgroundSize = 'cover';
 		}
-
-	var items = document.querySelectorAll('.item');
+	const items = document.querySelectorAll('.item');
 	for (var i = 0; i < items.length; i++) {
 		switch(true) {
 			case items[i].innerHTML.indexOf(6)  !== -1: items[i].innerHTML += '<he>6</he>';
@@ -112,36 +110,40 @@ function start() {
 			break;
 		}
 	}
-	var overlay = document.querySelector('.one');
 
-	var downcard1 = document.querySelector('.downcard');
+// прослушка кнопок 
+	const overlay = document.querySelector('.one');
+
+	const downcard1 = document.querySelector('.downcard');
 	downcard1.addEventListener('click', Func);
 
-	var perm = document.querySelector('.perm');
+	const perm = document.querySelector('.perm');
 	perm.addEventListener('click', Func2);
 
-	var stop = document.querySelector('.stop');
+	const stop = document.querySelector('.stop');
 	stop.addEventListener('click', stopFunc);
 
-	var result = 0;
-	var stoped = 0;
+	let result = 0;
+	let stoped = 0;
 	Func2();
 
-
+// функция выпада карты из колоды
 function Func() {
-	var arr = document.querySelectorAll('.item');
+	const arr = document.querySelectorAll('.item');
 	function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 	}
-	var number = getRandomInt(0,36);
+	const number = getRandomInt(0,36);
+	// если выпал туз открыть модалку
 	if (arr[number].innerHTML.indexOf(14) !== -1) {
 		stop.style.display = 'none';
-		var onetus = document.querySelector('.onetus');
-		var twotus = document.querySelector('.twotus');
+		const onetus = document.querySelector('.onetus');
+		const twotus = document.querySelector('.twotus');
 		overlay.style.display = 'block';
 		onetus.addEventListener('click', funcOne);
 		twotus.addEventListener('click', funcTwo);
 	}
+	// запись номинала карты в текущий счет
 	switch(true) {
 		case arr[number].innerHTML.indexOf(6)  !== -1: result += 6; perepis();break;
 		case arr[number].innerHTML.indexOf(7)  !== -1: result += 7; perepis();break;
@@ -156,25 +158,18 @@ function Func() {
 	arr[number].classList.add('item-grab');
 	arr[number].style.top = '100px';
 	arr[number].style.borderRadius = '5px';
-	// var topCard = 0;
-	// setInterval(function() {
-	// 	arr[number].style.top = ''+ topCard +'px ';
-	// 	if (topCard < 100) {
-	// 		topCard += 6;
-	// 	}
-	// }, 4);
 	arr[number].style.color = 'black';
 	arr[number].style.backgroundImage = 'url(img/two.jpg)';
 }
 
-// сброс текущей игры
+// сброс текущей игры (кнопка имеет display none в css)
 function Func2() {
-	var arrgrab = document.querySelectorAll('.item-grab');
+	const arrgrab = document.querySelectorAll('.item-grab');
 	for (var i = 0; i < arrgrab.length; i++) {
 		arrgrab[i].classList.remove('item-grab');
 		arrgrab[i].classList.add('item');
 	}
-	var arr = document.querySelectorAll('.item');
+	const arr = document.querySelectorAll('.item');
 	for (var i = 0; i < arr.length; i++) {
 		arr[i].style.color = 'transparent';
 		arr[i].style.top = '8px';
@@ -185,9 +180,7 @@ function Func2() {
 	perepis();
 }
 
-
-
-var resOne = result;
+let resOne = result;
 
 // Ход Бота
 function Bot() {	
@@ -198,7 +191,7 @@ function Bot() {
 		deleteButtons = document.querySelector('.buttons');
 		botstep.style.display = "block";
 		deleteButtons.style.display = "none";
-		setTimeout(function(){
+		setTimeout(() => {
 			giveCard.click();
 			botTusOne = document.querySelector('.onetus');
 			botTusOne.click();
@@ -222,12 +215,11 @@ function Bot() {
 	}		
 }
 
-
 // функция сравнения результата 
-var sravnenie1 = 0;
-var sravnenie2 = 0;
-var globalVin1 = 0;
-var globalVin2 = 0;
+let sravnenie1 = 0;
+let sravnenie2 = 0;
+let globalVin1 = 0;
+let globalVin2 = 0;
 function gameOver() {
 	sravnenie2 = result;
 	if (sravnenie1 <= 21 && sravnenie2 <= 21) {
@@ -252,17 +244,15 @@ function gameOver() {
 // запись очков бота на доску 
 function writeBot() {
 	stoped = result;
-	var botColumn = document.querySelector('.col-two');
-	var elemscore = document.createElement('h3');
+	const botColumn = document.querySelector('.col-two');
+	const elemscore = document.createElement('h3');
 	elemscore.classList.add('item-score');
 	elemscore.innerHTML = ''+ stoped +'';
 	botColumn.appendChild(elemscore);
 }
 
-
 // ограничение количества очков на доске и вывод очков за партию + начисление рейтинга
-
-var reitArr = [];
+let reitArr = [];
 switch(true) {
 	case localStorage.getItem('raiting') == 1: reitArr.push('one');break;
 	case localStorage.getItem('raiting') == 2: reitArr.push('one', 'one');break;
@@ -270,8 +260,8 @@ switch(true) {
 	case localStorage.getItem('raiting') == 4: reitArr.push('one', 'one', 'one', 'one');break;
 	case localStorage.getItem('raiting') == 5: reitArr.push('one', 'one', 'one', 'one', 'one');break;
 };
-var  massiveScore = [];
-setInterval(function() {
+let  massiveScore = [];
+setInterval(() => {
 	massiveScore = document.querySelectorAll('.table h3');
 if (massiveScore.length > 19){
 	switch(true) {
@@ -286,19 +276,17 @@ if (massiveScore.length > 19){
 	};
 	numberReiting = reitArr.length;
 	localStorage.setItem('raiting', numberReiting);
-	var finish = localStorage.getItem('raiting');
-	var reit = document.querySelectorAll('.star');
+	const finish = localStorage.getItem('raiting');
+	const reit = document.querySelectorAll('.star');
 		for (var i = 0; i < 5; i++) {
 		reit[i].innerHTML = '<i class="fa fa-star-o" aria-hidden="true"></i>';
 	}
-
 		alert('партия окончена');
 		location.reload(true)
 	}
 }, 500);
-
-setTimeout(function() {
-	var reit = document.querySelectorAll('.star');
+setTimeout(() => {
+	const reit = document.querySelectorAll('.star');
 	finish = localStorage.getItem('raiting');
 	console.log(finish);
 	switch(true) {
@@ -327,73 +315,45 @@ setTimeout(function() {
 	}
 }, 500);
 	
-
-
-
-
 // кнопка хватит
 function stopFunc() {
 	sravnenie1 = result;
-
-	// var deleteItems = document.querySelectorAll('.item-grab');
-	// for (var i = 0; i < deleteItems.length; i++) {
-	// 	deleteItems[i].remove();
-	// };
 	stoped = result;
-	// switch(true) {
-	// 	case stoped < 21: alert('ты набрал '+ stoped +' недобор');break;
-	// 	case stoped === 21: alert('ты набрал '+ stoped +' ПОЗДРАВЛЯЮ!');break;
-	// 	case stoped > 21: alert('ты набрал '+ stoped +' перебор');break;
-	// }
 	Func2();
-	var table1 = document.querySelectorAll('.table h3');
-	var tablelen = table1.length;
-	
-
-	
+	const table1 = document.querySelectorAll('.table h3');
+	const tablelen = table1.length;
 		if ( tablelen & 1 ) {
-			var player2 = document.querySelector('.col-two');
-			var elemscore = document.createElement('h3');
+			const player2 = document.querySelector('.col-two');
+			const elemscore = document.createElement('h3');
 			elemscore.classList.add('item-score');
 			elemscore.innerHTML = ''+ stoped +'';
 			player2.appendChild(elemscore);
 		} else {
-			var player1 = document.querySelector('.col-one');
-			var elemscore2 = document.createElement('h3');
+			const player1 = document.querySelector('.col-one');
+			const elemscore2 = document.createElement('h3');
 			elemscore2.classList.add('item-score');
 			elemscore2.innerHTML = ''+ stoped +'';
 			player1.appendChild(elemscore2);
 		}
-	
-	
 	Bot();
-
 }
 function perepis() {
-		var res = document.querySelector('h1');
+		const res = document.querySelector('h1');
 		res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ result +'';
-		// localStorage.setItem('result', result);
-		// var res = document.querySelector('h1');
-		// LocalRes = localStorage.getItem('result');
-		// res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ LocalRes +'';
 	}
-
-var res = document.querySelector('h1');
+const res = document.querySelector('h1');
 LocalRes = localStorage.getItem('result');
 res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ LocalRes +'';
-
-function funcOne() {
-	overlay.style.display = 'none';
-	result += 1;
-	perepis();
-	stop.style.display = 'inline-block';
-}
-
-function funcTwo() {
-	overlay.style.display = 'none';
-	result += 11;
-	perepis();
-	stop.style.display = 'inline-block';
-}
-
+	function funcOne() {
+		overlay.style.display = 'none';
+		result += 1;
+		perepis();
+		stop.style.display = 'inline-block';
+	}
+	function funcTwo() {
+		overlay.style.display = 'none';
+		result += 11;
+		perepis();
+		stop.style.display = 'inline-block';
+	}
 }
