@@ -1,9 +1,3 @@
-// MODULE_CLASS
-    const vid = function(name, color) {
-        this.name = name;
-        this.__proto__ = world.card;
-        this.color = color;
-    }
 
 
 // MODULE
@@ -15,27 +9,82 @@ const stop = document.querySelector('.stop');
 const overlay = document.querySelector('.one');
 const onetus = document.querySelector('.onetus');
 const twotus = document.querySelector('.twotus');
-let count1 = 6;
-let cardleft = 30;
 let result = 0;
 let stoped = 0;
-let sravnenie1 = 0;
-let sravnenie2 = 0;
 let globalVin1 = 0;
 let globalVin2 = 0;
-let reitArr = [];
+
+
+
+
+function card() {
+        // выбор еденицы при выпадании туза
+    this.aceOne = function() {
+        overlay.style.display = 'none';
+        result += 1;
+        world.scoreEntry();
+        stop.style.display = 'inline-block';
+    };
+            // выбор одинадцати при выпадании
+    this.aceEleven = function() {
+        overlay.style.display = 'none';
+        result += 11;
+        world.scoreEntry();
+        stop.style.display = 'inline-block';
+    };
+            // метод выброса карты из колоды
+    this.take = function() {
+        // выбираем рандомную карту из массива всех карт
+        const arr = document.querySelectorAll('.item');
+        function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+        }
+        const number = getRandomInt(0,36);
+            // если выпал туз открыть модалку
+        if (arr[number].innerHTML.indexOf(14) !== -1) {
+            stop.style.display = 'none';
+            overlay.style.display = 'block';
+            onetus.addEventListener('click', card.aceOne);
+            twotus.addEventListener('click', card.aceEleven);
+        }
+            // запись номинала карты в текущий счет
+        switch(true) {
+            case arr[number].innerHTML.indexOf(6)  !== -1: result += 6; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(7)  !== -1: result += 7; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(8)  !== -1: result += 8; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(9)  !== -1: result += 9; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(10) !== -1: result += 10; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(11) !== -1: result += 2; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(12) !== -1: result += 3; world.scoreEntry();break;
+            case arr[number].innerHTML.indexOf(13) !== -1: result += 4; world.scoreEntry();break;
+        }
+        arr[number].classList.remove('item');
+        arr[number].classList.add('item-grab');
+        arr[number].style.top = '100px';
+        arr[number].style.borderRadius = '5px';
+        arr[number].style.color = 'black';
+        arr[number].style.backgroundImage = 'url(img/two.jpg)';
+    };
+}; // END OBJECT CARD!
+
+
 
 // MODULE
 // "окружение" главный объект игры 
-var world = {
+function worldOne(playerName, scoreName, card, finish) {
+    let count1 = 6;
+    let cardleft = 30;
+    let reitArr = [];
+    let sravnenie1 = 0;
+    let sravnenie2 = 0;
         //получение имени игрока из local-storage и запись на доску
-    recordName: function() {
+    this.recordName = function() {
         playerName = localStorage.getItem('name');
         scoreName = document.querySelector('#scoreName');
         scoreName.innerHTML = ''+ playerName +'';
-    },
+    };
         //функция изменения имени
-    newName: function() {
+     this.newName = function() {
         overlayName.style.display = "block";
         nameBar.addEventListener('keyup', () => {
         if (event.keyCode === 13) {
@@ -45,87 +94,48 @@ var world = {
             overlayName.style.display = "none";
             }
         })
-    },
+    };
 
-    scoreEntry: function() {
+     this.scoreEntry = function() {
         const res = document.querySelector('h1');
         res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ result +'';
-    },
+    };
 
         // ОБЪЕКТ КАРТЫ В ОБЪЕКТЕ WORLD
-    card: {
-            // ширина карты
-        width: '170px',
-            // высота карты
-        height: '265px',
-            // цвет карты
-        background: '#f2f2f2',
-            // тень
-        shadow: '0 0 10px rgba(0,0,0,0.5)',
-            // выбор еденицы при выпадании туза
-        aceOne: function() {
-            overlay.style.display = 'none';
-            result += 1;
-            world.scoreEntry();
-            stop.style.display = 'inline-block';
-        },
-            // выбор одинадцати при выпадании
-        aceEleven: function() {
-            overlay.style.display = 'none';
-            result += 11;
-            world.scoreEntry();
-            stop.style.display = 'inline-block';
-        },
-            // метод выброса карты из колоды
-        take: function() {
-                // выбираем рандомную карту из массива всех карт
-                const arr = document.querySelectorAll('.item');
-                function getRandomInt(min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
-                }
-                const number = getRandomInt(0,36);
-                // если выпал туз открыть модалку
-                if (arr[number].innerHTML.indexOf(14) !== -1) {
-                    stop.style.display = 'none';
-                    overlay.style.display = 'block';
-                    onetus.addEventListener('click', world.card.aceOne);
-                    twotus.addEventListener('click', world.card.aceEleven);
-                }
-                // запись номинала карты в текущий счет
-                switch(true) {
-                    case arr[number].innerHTML.indexOf(6)  !== -1: result += 6; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(7)  !== -1: result += 7; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(8)  !== -1: result += 8; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(9)  !== -1: result += 9; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(10) !== -1: result += 10; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(11) !== -1: result += 2; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(12) !== -1: result += 3; world.scoreEntry();break;
-                    case arr[number].innerHTML.indexOf(13) !== -1: result += 4; world.scoreEntry();break;
-                }
-                arr[number].classList.remove('item');
-                arr[number].classList.add('item-grab');
-                arr[number].style.top = '100px';
-                arr[number].style.borderRadius = '5px';
-                arr[number].style.color = 'black';
-                arr[number].style.backgroundImage = 'url(img/two.jpg)';
-        }
-    }, // END OBJECT CARD!
+    
         // отрисовка карт на стол
-    renderCards: function() {
-        const bubn = new vid('♦', 'red');
-        const cherv = new vid('♥', 'red');
-        const crest = new vid('♣', 'black');
-        const pick = new vid('♠', 'black');
+     this.renderCards = function() {
+        const bubn = {
+            name: '♦',
+            __proto__: card,
+            color: 'red'
+        };
+        const cherv = {
+            name: '♥',
+            __proto__: card,
+            color: 'red'
+        };
+        const crest = {
+            name: '♣',
+            __proto__: card,
+            color: 'black'
+        };
+        const pick = {
+            name: '♠',
+            __proto__: card,
+            color: 'black'
+        };
+
         // построение айтемов (карт) на стол
         const arr1 = [bubn, cherv, crest, pick];
     for (var j = 0; j < 4; j++) {
         for (var i = 0; i < 9; i++) {
             const elem = document.createElement('div');
             elem.classList.add('item');
-            elem.style.backgroundColor = ''+ this.card.background +'';
-            elem.style.width = ''+ this.card.width +'';
-            elem.style.height = ''+ this.card.height +'';
-            elem.style.boxShadow = ''+ this.card.shadow +'';
+            elem.style.backgroundColor = '#f2f2f2';
+            elem.style.width = '170px';
+            elem.style.height = '265px';
+            elem.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
             
             elem.style.position = 'absolute';
             elem.style.left = ''+ cardleft +'px';
@@ -169,9 +179,9 @@ var world = {
             break;
             }
         }
-    },
+    };
         // все карты собираем в исходное состояние  
-    Func2: function() {
+     this.Func2 = function() {
         const arrgrab = document.querySelectorAll('.item-grab');
         for (var i = 0; i < arrgrab.length; i++) {
             arrgrab[i].classList.remove('item-grab');
@@ -186,10 +196,10 @@ var world = {
         }   
     result = 0;
     world.scoreEntry();
-    },
+    };
 
         // остановка хода и переход к ходу бота
-    stopFunc: function() {
+     this.stopFunc = function() {
         sravnenie1 = result;
         stoped = result;
         world.Func2();
@@ -209,9 +219,9 @@ var world = {
             player1.appendChild(elemscore2);
         }
     bot.Bot();
-    },
+    };
         // показать кто выйграл последнюю катку
-    gameOver: function() {
+     this.gameOver = function() {
         sravnenie2 = result;
         if (sravnenie1 <= 21 && sravnenie2 <= 21) {
         switch (true) {
@@ -230,9 +240,9 @@ var world = {
             case sravnenie2 === sravnenie1: alert('ничья'); break;
         }
         }
-    },
+    };
         // основные настройки игры (ограничение количества очков на доске и вывод очков за партию + начисление рейтинга)
-    settings: function() {
+     this.settings = function() {
             switch(true) {
             case localStorage.getItem('raiting') == 1: reitArr.push('one');break;
             case localStorage.getItem('raiting') == 2: reitArr.push('one', 'one');break;
@@ -294,16 +304,18 @@ var world = {
         };break;
             }
         }, 500);
-    }
+    };
 
 };   
 // END OBJECT WORLD
+// export default worldOne;
+// import worldOne from './world.js';
 
 // MODULE
 // объект бота
-var bot = {
+function bot() {
         // ход бота
-    Bot: function() {
+    this.Bot = function() {
         giveCard = document.querySelector('.downcard');
         give();
         function give() {
@@ -333,33 +345,36 @@ var bot = {
                 }
             }, 700)
         }
-    },
+    };
         // запись очков бота на доску 
-    writeBot: function() {
+    this.writeBot = function() {
         stoped = result;
         const botColumn = document.querySelector('.col-two');
         const elemscore = document.createElement('h3');
         elemscore.classList.add('item-score');
         elemscore.innerHTML = ''+ stoped +'';
         botColumn.appendChild(elemscore);
-    }
+    };
 
-}
-// MODULE
+};
+
 // инициализация игры 
-if (localStorage.getItem('name')) {
-	overlayName.style.display = "none";
-	start();
-} else {	
-	nameBar.addEventListener('keyup', () => {
-	if (event.keyCode === 13) {
+    var card = new card();
+    var world = new worldOne();
+    var bot = new bot();
+    if (localStorage.getItem('name')) {
+    overlayName.style.display = "none";
+    start();
+} else {    
+    nameBar.addEventListener('keyup', () => {
+    if (event.keyCode === 13) {
         const localName = nameBar.value;
         overlayName.style.display = "none";
         localStorage.setItem('name', localName);
         playerName = localStorage.getItem('name');
         start();
-    	}
-	})
+        }
+    })
 }
 //запуск игры 
 function start() {
@@ -368,10 +383,13 @@ function start() {
     world.settings();
 }
 
-
-
-// MODULE
 //прослушка кнопок 
 changeName.addEventListener('click', world.newName);
-downcard1.addEventListener('click', world.card.take);
+downcard1.addEventListener('click', card.take);
 stop.addEventListener('click', world.stopFunc);
+
+
+
+
+
+
