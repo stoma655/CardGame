@@ -6,14 +6,14 @@ function card() {
         world.scoreEntry();
         stop.style.display = 'inline-block';
     };
-            // выбор одинадцати при выпадании
+        // выбор одинадцати при выпадании туза
     this.aceEleven = function() {
         overlay.style.display = 'none';
         result += 11;
         world.scoreEntry();
         stop.style.display = 'inline-block';
     };
-            // метод выброса карты из колоды
+        // метод выброса карты из колоды
     this.take = function() {
         // выбираем рандомную карту из массива всех карт
         const arr = document.querySelectorAll('.item');
@@ -46,4 +46,4 @@ function card() {
         arr[number].style.color = 'black';
         arr[number].style.backgroundImage = 'url(img/two.jpg)';
     };
-}; // END OBJECT CARD!
+}; 

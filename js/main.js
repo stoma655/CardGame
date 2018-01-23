@@ -1,6 +1,4 @@
-
-
-// MODULE
+// глобальные переменные
 const nameBar = document.querySelector('#name');
 const overlayName = document.querySelector('.enter-name');
 const changeName = document.querySelector('.change_name');
@@ -13,7 +11,6 @@ let result = 0;
 let stoped = 0;
 let globalVin1 = 0;
 let globalVin2 = 0;
-
 
 // инициализация игры 
     var card = new card();

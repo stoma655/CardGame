@@ -1,4 +1,3 @@
-// MODULE
 // "окружение" главный объект игры 
 function worldOne(playerName, scoreName, card, finish) {
     let count1 = 6;
@@ -24,14 +23,11 @@ function worldOne(playerName, scoreName, card, finish) {
             }
         })
     };
-
+        // перезапись текусчего счета (срабатывает после любого действия)
      this.scoreEntry = function() {
         const res = document.querySelector('h1');
         res.innerHTML = 'ТЕКУЩИЙ СЧЕТ:  '+ result +'';
     };
-
-        // ОБЪЕКТ КАРТЫ В ОБЪЕКТЕ WORLD
-    
         // отрисовка карт на стол
      this.renderCards = function() {
         const bubn = {
@@ -54,7 +50,6 @@ function worldOne(playerName, scoreName, card, finish) {
             __proto__: card,
             color: 'black'
         };
-
         // построение айтемов (карт) на стол
         const arr1 = [bubn, cherv, crest, pick];
     for (var j = 0; j < 4; j++) {
@@ -109,7 +104,7 @@ function worldOne(playerName, scoreName, card, finish) {
             }
         }
     };
-        // все карты собираем в исходное состояние  
+        // все карты собираем в исходное состояние (например после окончания хода) 
      this.Func2 = function() {
         const arrgrab = document.querySelectorAll('.item-grab');
         for (var i = 0; i < arrgrab.length; i++) {
@@ -126,7 +121,6 @@ function worldOne(playerName, scoreName, card, finish) {
     result = 0;
     world.scoreEntry();
     };
-
         // остановка хода и переход к ходу бота
      this.stopFunc = function() {
         sravnenie1 = result;
@@ -236,6 +230,5 @@ function worldOne(playerName, scoreName, card, finish) {
     };
 
 };   
-// END OBJECT WORLD
 // export default worldOne;
 // import worldOne from './world.js';
