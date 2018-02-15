@@ -13,7 +13,6 @@ let globalVin1 = 0;
 let globalVin2 = 0;
 
 // инициализация игры 
-    var card = new card();
     var world = new worldOne();
     var bot = new bot();
     if (localStorage.getItem('name')) {
@@ -31,23 +30,24 @@ let globalVin2 = 0;
     })
 }
 
-function card() {
+// Объект карты
+let card = {
         // выбор еденицы при выпадании туза
-    this.aceOne = function() {
+    aceOne: function() {
         overlay.style.display = 'none';
         result += 1;
         world.scoreEntry();
         stop.style.display = 'inline-block';
-    };
+    },
         // выбор одинадцати при выпадании туза
-    this.aceEleven = function() {
+    aceEleven: function() {
         overlay.style.display = 'none';
         result += 11;
         world.scoreEntry();
         stop.style.display = 'inline-block';
-    };
+    },
         // метод выброса карты из колоды
-    this.take = function() {
+    take: function() {
         // выбираем рандомную карту из массива всех карт
         const arr = document.querySelectorAll('.item');
         function getRandomInt(min, max) {
@@ -78,7 +78,7 @@ function card() {
         arr[number].style.borderRadius = '5px';
         arr[number].style.color = 'black';
         arr[number].style.backgroundImage = 'url(img/two.jpg)';
-    };
+    }
 }; 
 
 
